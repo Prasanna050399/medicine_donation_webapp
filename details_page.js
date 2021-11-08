@@ -12,13 +12,22 @@ export default function DetailsPage(){
     //     const temp = await getUserData(id)
     //     return temp
     // }
-    let collReq = ""
+    // let collReq = ""
+    // let user = {}
+    // async function getUserCollection(){
+    //     collReq = await getCollectionRequest(id)
+    //     user = await getUserData(collReq._id)
+    //     // console.log(user)
+    // }getUserCollection()
+    // const tableData = []
     useEffect(() => {
-        const tableData = []
         async function getUserCollection(){
-            collReq = await getCollectionRequest(id)
-            const user = await getUserData(collReq.userID)
+            // collReq = await getCollectionRequest(id)
+            // const user = await getUserData(collReq._id)
+            const user = await getUserData(id)
+            // console.log(user)
             setUserDetails(user)
+
             // console.log("in useEffect before getcollectionrequest")
             // console.log(id)
             // const collReq = await getCollectionRequest(id)
@@ -43,20 +52,44 @@ export default function DetailsPage(){
             // const user = getUser(collectionRequest.userID) 
             // setUserDetails(user)
         }getUserCollection()
+        async function getRequest(){
+            const response = await getCollectionRequest(id)
+            // console.log(response)
+            // tableData.push(...response.request)
+            setCollectionRequest([...response.request])
+            // console.log(tableData)
+        }getRequest()
         // setCollectionRequest(collReq)
         // console.log(collectionRequest)
     }, [])
-    // console.log(userDetails)
     
+
+    // const table = []
+    // useEffect(() => {
+    //     async function getRequest(){
+    //         const response = await getCollectionRequest(id)
+    //         console.log(response)
+    //         table.push(...response.request)
+    //         console.log(table)
+    //     }getRequest()
+    // },[])
+    // console.log(userDetails)
+    // console.log(user)
     return(
         // <p>{id}</p>
         <>
+            <hr/>
             <div>
                 <p>name - {userDetails.name}</p>
                 <p>gender - {userDetails.gender}</p>
                 <p>age - {userDetails.age}</p>
                 <p>address - {userDetails.address}</p>
                 <p>contact - {userDetails.contact}</p>
+                {/* <p>name - {user.name}</p>
+                <p>gender - {user.gender}</p>
+                <p>age - {user.age}</p>
+                <p>address - {user.address}</p>
+                <p>contact - {user.contact}</p> */}
             </div>
             <hr/>
             <h4>Medicine Requests</h4>
@@ -70,6 +103,14 @@ export default function DetailsPage(){
                     </tr>
                 </thead>
                 <tbody>
+                {collectionRequest.map((item) => (
+                        <tr key = {item.medicineName}>
+                            <td>{item.medicineName}</td>
+                            <td>{item.weight}</td>
+                            <td>{item.quantity}</td>
+                            <td>{item.companyName}</td>   
+                        </tr>
+                    ))}
                     
                 </tbody>
             </table>
