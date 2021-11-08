@@ -65,6 +65,17 @@ exports.getData = async function(req, res){
     res.end
 }
 
+exports.setApproveRequest = async function(req, res){
+    const response = await Collection.updateOne({_id : req.body.id}, {active : false, status : "Approved"}, (err) => {
+        if(err){
+            console.log(err)
+        }
+    }).clone()
+    if(response){
+        res.send(response)
+    }
+    res.end
+}
 exports.setRejectRequest = async function(req,res){
     // console.log(req.body.requestID)
     const response = await Collection.updateOne({_id : req.body.requestID}, {active : false, status : "Rejected"}, (err)=> {
@@ -90,6 +101,8 @@ exports.getCollectionRequest = async function(req,res){
     }
     res.end
 }
+
+
 
 // exports.setUser = async function(req, res){
 //     const username = 'Username 1'

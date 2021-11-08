@@ -45,7 +45,11 @@ export const getUserData = async(id) => {
     return response.data
 }
 
-
+export const setApprove = async(id) =>{
+    const newUrl = `${baseURL}/approveRequest`
+    const response = await axios.post(newUrl,{id})
+    return response.data
+}
 export const setReject = async(requestID) => {
     const newUrl = `${baseURL}/rejectRequest`
     // console.log("enter setReject services")

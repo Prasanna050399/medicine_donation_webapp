@@ -14,7 +14,7 @@ export default function AdminLogin(){
             alert(response)
         }
         else{
-            history.push(`/admin-page${response}`)
+            history.push(`/admin-page/${response}`)
         }
 
     }

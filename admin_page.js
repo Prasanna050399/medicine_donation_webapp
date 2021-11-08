@@ -4,10 +4,11 @@ import { getActiveCollectionRequest, getCompleteCollectionRequest, getUserData, 
 
 import donate_img from './images/donate-image.png'
 import { useParams , useHistory, Redirect} from "react-router-dom";
-import { get } from "mongoose";
+
 export default function AdminPage(){
     const history = useHistory()
-    // const {id} = useParams()
+    const {id} = useParams()
+    // console.log(id)
     // console.log(id)
     // if(!id){
     //     //   <Redirect path />
@@ -228,7 +229,8 @@ export default function AdminPage(){
                             <td>{item.address}</td>
                             <td><button onClick = {(event) =>{
                                 event.preventDefault()
-                                history.push(`/requestDetails/${item.SrNo}`)
+                                // console.log(id)
+                                history.push(`/requestDetails/${id}/${item.SrNo}`)
                             }}>Details</button></td>
                             <td><button onClick = {()=>{
                                 // console.log(item.name)

@@ -10,4 +10,5 @@ router.post('/completeRequest',loginController.getCompleteCollectionData)
 router.post('/getData',loginController.getData)
 router.post('/rejectRequest',loginController.setRejectRequest)
 router.post('/getCollectionRequest',loginController.getCollectionRequest)
+router.post('/approveRequest',loginController.setApproveRequest)
 module.exports = router

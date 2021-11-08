@@ -1,11 +1,12 @@
 import { Collection, PromiseProvider } from "mongoose";
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { getCollectionRequest, getUserData } from "../services/UI_to_node";
+import React, { useEffect, useState} from "react";
+import { useParams, useHistory  } from "react-router-dom";
+import { getCollectionRequest, getUserData, setReject, setApprove } from "../services/UI_to_node";
 
 // export default function DetailsPage(props){
 export default function DetailsPage(){
-    const {id} = useParams()
+    const history = useHistory()
+    const {adminid,requestid} = useParams()
     const [collectionRequest, setCollectionRequest] = useState([])
     const [userDetails, setUserDetails] = useState('')
     // async function getUser(id){
@@ -20,11 +21,12 @@ export default function DetailsPage(){
     //     // console.log(user)
     // }getUserCollection()
     // const tableData = []
+    // console.log(requestid)
     useEffect(() => {
         async function getUserCollection(){
             // collReq = await getCollectionRequest(id)
             // const user = await getUserData(collReq._id)
-            const user = await getUserData(id)
+            const user = await getUserData(requestid)
             // console.log(user)
             setUserDetails(user)
 
@@ -53,7 +55,7 @@ export default function DetailsPage(){
             // setUserDetails(user)
         }getUserCollection()
         async function getRequest(){
-            const response = await getCollectionRequest(id)
+            const response = await getCollectionRequest(requestid)
             // console.log(response)
             // tableData.push(...response.request)
             setCollectionRequest([...response.request])
@@ -63,7 +65,13 @@ export default function DetailsPage(){
         // console.log(collectionRequest)
     }, [])
     
-
+    async function Approve(){
+        const response = await setApprove(requestid)
+        // console.log('after set approve in setapprove function')
+    }
+    async function Reject(){
+        const response = await setReject(requestid)
+    }
     // const table = []
     // useEffect(() => {
     //     async function getRequest(){
@@ -114,6 +122,18 @@ export default function DetailsPage(){
                     
                 </tbody>
             </table>
+            <form>
+                <button onClick = {() => {
+                    
+                    Approve()
+                    // console.log('after set approve')
+                    history.push(`/admin-page/${adminid}`)
+                }}> Approve </button>
+                <button onClick = {() => {
+                    Reject()
+                    history.push(`/admin-page/${adminid}`)
+                }}> Reject </button>
+            </form>
         </>
     )
 }

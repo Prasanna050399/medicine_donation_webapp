@@ -35,11 +35,11 @@ function App() {
         <Route path = '/login-as-admin'>
           <AdminLogin/>
         </Route>
-        <Route path = '/admin-page:id'>
+        <Route path = '/admin-page/:id'>
           {/* <AdminPage user = {user} setUser ={setUser}/> */}
           <AdminPage/>
         </Route>
-        <Route path = '/requestDetails/:id'>
+        <Route path = '/requestDetails/:adminid/:requestid'>
           {/* <DetailsPage request={request} setRequest={setRequest}/> */}
           <DetailsPage/>
         </Route>
