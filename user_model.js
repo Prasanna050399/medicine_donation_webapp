@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-
+// const Collector = require('Collection_models')
 
 const UserSchema = new mongoose.Schema({
     username: {
@@ -23,7 +23,11 @@ const UserSchema = new mongoose.Schema({
     },
     address: {
         type: String
-    }
+    },
+    collection_requests : [{
+        type : mongoose.Schema.Types.ObjectId,
+        ref : "collectors"
+    }]
 })
 
 const User = mongoose.model('User',UserSchema)

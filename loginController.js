@@ -108,21 +108,23 @@ exports.getCollectionRequest = async function(req,res){
 
 // exports.setCollectionData = async function(req,res){
     
-//     const medicinename = "med1"
+//     const medicineName = "med1"
 //     const quantity = 5
 //     const weight = 50
-//     const companyname = "com1"
-//     const userID = "id1"
+//     const companyName = "com1"
+//     // const userID = "id1"
 //     const active = true
 //     const status = ""
 //     const Date = "1-1-2021"
-
+//     const request = [{medicineName, quantity, weight, companyName},
+//         {medicineName : 'med 2', quantity : 10, weight : 100, companyName : 'comp2'},
+//         {medicineName : 'med 3', quantity : 10, weight : 100, companyName : 'comp3'},
+//         {medicineName : 'med 4', quantity : 10, weight : 100, companyName : 'comp4'},
+//         {medicineName : 'med 5', quantity : 10, weight : 100, companyName : 'comp5'},
+//     ]
+//     console.log(request)
 //     const collection = new Collection({
-//         medicinename,
-//         quantity,
-//         weight,
-//         companyname,
-//         userID,
+//         request,
 //         active,
 //         status,
 //         Date

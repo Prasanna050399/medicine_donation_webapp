@@ -27,9 +27,9 @@ const col_model = new mongoose.Schema({
 
 
 
-const Collection = mongoose.model('user_collection',col_model)
+const Collector = mongoose.model('Collector',col_model)
 
-module.exports = Collection
+module.exports = Collector
 
 
 
