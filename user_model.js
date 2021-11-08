@@ -26,7 +26,7 @@ const UserSchema = new mongoose.Schema({
     },
     collection_requests : [{
         type : mongoose.Schema.Types.ObjectId,
-        ref : "collectors"
+        ref : "Collector"
     }]
 })
 

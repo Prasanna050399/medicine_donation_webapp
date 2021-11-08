@@ -31,9 +31,16 @@ export const getCompleteCollectionRequest = async() =>{
 }
 
 
-export const getUserData = async(userID) =>{
+// export const getUserData = async(userID) =>{
+//     const newUrl = `${baseURL}/getData`
+//     const response = await axios.post(newUrl,{userID})
+//     // console.log(response.data)
+//     return response.data
+// }
+
+export const getUserData = async(id) => {
     const newUrl = `${baseURL}/getData`
-    const response = await axios.post(newUrl,{userID})
+    const response = await axios.post(newUrl,{id})
     // console.log(response.data)
     return response.data
 }

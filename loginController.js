@@ -38,16 +38,33 @@ exports.getActiveCollectionData = async function(req,res){
         console.log("Could not find active request")
     }
 }
+// exports.getData = async function(req, res){
+//     // const stat = {req.body.}
+//     // console.log(req.body.userID)
+//     const response = await UserSchema.findById(req.body.userID)
+//     if(response){
+//         res.send(response)
+//     }else{
+//         console.log('could not find id of the user')
+//     }
+// }
+
 exports.getData = async function(req, res){
-    // const stat = {req.body.}
-    // console.log(req.body.userID)
-    const response = await UserSchema.findById(req.body.userID)
+    // console.log(req.body.id)
+    const response = await UserSchema.findOne({collection_requests : req.body.id}, (err,UserInfo) => {
+
+        if (err){
+            console.log(err)
+        }}).clone()
+    // console.log(response)
     if(response){
         res.send(response)
     }else{
         console.log('could not find id of the user')
     }
+    res.end
 }
+
 exports.setRejectRequest = async function(req,res){
     // console.log(req.body.requestID)
     const response = await Collection.updateOne({_id : req.body.requestID}, {active : false, status : "Rejected"}, (err)=> {
@@ -115,19 +132,16 @@ exports.getCollectionRequest = async function(req,res){
 //     // const userID = "id1"
 //     const active = true
 //     const status = ""
-//     const Date = "1-1-2021"
-//     const request = [{medicineName, quantity, weight, companyName},
-//         {medicineName : 'med 2', quantity : 10, weight : 100, companyName : 'comp2'},
-//         {medicineName : 'med 3', quantity : 10, weight : 100, companyName : 'comp3'},
-//         {medicineName : 'med 4', quantity : 10, weight : 100, companyName : 'comp4'},
-//         {medicineName : 'med 5', quantity : 10, weight : 100, companyName : 'comp5'},
+//     const date = "1-1-2021"
+//     const request = [{medicineName, quantity, weight, companyName}
+
 //     ]
 //     console.log(request)
 //     const collection = new Collection({
 //         request,
 //         active,
 //         status,
-//         Date
+//         date
 //     })
 //     await collection.save((err, result) => {
 //         if(err){

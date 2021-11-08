@@ -2,6 +2,8 @@ const router = require('express').Router()
 const loginController = require('./loginController')
 
 router.post('/', loginController.verifyUser)
+
+// router.post('/activeRequest',loginController.setCollectionData)
 router.post('/activeRequest',loginController.getActiveCollectionData)
 router.post('/completeRequest',loginController.getCompleteCollectionData)
 // router.post('/completeRequest',loginController.setUser)

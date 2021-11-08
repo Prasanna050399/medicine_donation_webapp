@@ -21,19 +21,35 @@ export default function AdminPage(){
     // const TableData = {}
     // setInputData([...inputData, { medicineName: '', quantity: '',weight:'',companyName:'' }])
     
-    async function getData(userID,Date,id){
-        const userdata = await getUserData(userID)
+    // async function getData(userID,Date,id){
+    //     const userdata = await getUserData(userID)
+    //     if(userdata){
+    //         const temp = {
+    //             SrNo : id,
+    //             name : userdata.name,
+    //             address : userdata.address,
+    //             date : Date
+    //         }
+    //         // console.log(temp)
+    //         return temp
+    //     }
+    // }
+
+    async function getData(Date, id)
+    {
+        const userdata = await getUserData(id)
         if(userdata){
-            const temp = {
-                SrNo : id,
-                name : userdata.name,
-                address : userdata.address,
-                date : Date
-            }
-            // console.log(temp)
-            return temp
-        }
+                    const temp = {
+                        SrNo : id,
+                        name : userdata.name,
+                        address : userdata.address,
+                        date : Date
+                    }
+                    // console.log(temp)
+                    return temp
+                }
     }
+
     // useEffect(() => {
     //     async function getUserStates(){
     //         const activeData = await getActiveCollectionRequest()
@@ -66,7 +82,8 @@ export default function AdminPage(){
             for(let i = 0; i<activeContent.length; i++){
                 // console.log(activeContent[i].userID)
                 
-                TableData.push(await getData(activeContent[i].userID,activeContent[i].Date,activeContent[i]._id))
+                // TableData.push(await getData(activeContent[i].userID,activeContent[i].Date,activeContent[i]._id))
+                TableData.push(await getData(activeContent[i].date,activeContent[i]._id))
                 // console.log(TableData)
                 
                 // TableData[i] = getData(activeContent[i].userID,activeContent[i].Date)
@@ -79,6 +96,7 @@ export default function AdminPage(){
 
             }
             // console.log(TableData)
+
             setUserDetails([...TableData])
 
         }getRequests()
@@ -172,7 +190,7 @@ export default function AdminPage(){
             </div>
             <div style = {styles}>
                 <h4 align = 'center'>Rejected</h4>
-                <p>Number of approved requests : {rejected_req}</p> 
+                <p>Number of rejected requests : {rejected_req}</p> 
             </div>
             
             {/* <input type = 'textarea' readOnly = 'true'/>
